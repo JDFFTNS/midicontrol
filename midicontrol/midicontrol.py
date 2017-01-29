@@ -19,25 +19,24 @@ class MidiControl(object):
     """
 
     def __init__(self, midi_manager, name, control_number, value=0, min=0, max=255, allowed_values=None):
-    """
-    Instantiate a midi control object that will receive midi control changes.
+        """
+        Instantiate a midi control object that will receive midi control changes.
 
-    Parameters
-    ----------
-    midi_manager : MidiControlManager
-        The parent MidiControlManager this control will be registered to.
-    name : str
-        Name of this control.
-    control_number: int
-        The midi control number (CC).
-    value:  int or float
-        The initial value of this control.
-    min, max: int or float
-        The value range of this control.
-    allowed_values: array
-        A collection of discrete values this control should hold.
-
-    """
+        Parameters
+        ----------
+        midi_manager : MidiControlManager
+            The parent MidiControlManager this control will be registered to.
+        name : str
+            Name of this control.
+        control_number: int
+            The midi control number (CC).
+        value:  int or float
+            The initial value of this control.
+        min, max: int or float
+            The value range of this control.
+        allowed_values: array
+            A collection of discrete values this control should hold.
+        """
         self.midi_manager = midi_manager
         self.min = 0
         self.max = 255
@@ -75,9 +74,9 @@ class MidiControlManager(object):
 
 
     def register_control(self, control):
-    """
+        """
         Register a MidiControl. Called during contstruction of MidiControl.
-    """
+        """
         self.controls[control.control_number] = control
 
 
