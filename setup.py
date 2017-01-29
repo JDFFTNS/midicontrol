@@ -10,5 +10,5 @@ setup(
   download_url = 'https://github.com/wolfgangsteiner/midicontrol/tarball/0.1', # I'll explain this in a second
   keywords = ['midi', 'control'], # arbitrary keywords
   classifiers = [],
-  install_requires=['mido','rtmidi'],
+  install_requires=['mido','python-rtmidi'],
 )
