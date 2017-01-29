@@ -1,15 +1,16 @@
 import cv2
 import numpy as np
 import midicontrol
+from midicontrol import MidiControl,MidiControlManager
 
 midicontrol.set_logging(True)
 
-class MyImageSource(midicontrol.MidiControlManager):
+class MyImageSource(MidiControlManager):
     def __init__(self):
         super().__init__()
-        self.red   = midicontrol.MidiControl(self, "red", 80, value=127, min=0, max=255)
-        self.green = midicontrol.MidiControl(self, "green", 81, value=127, min=0, max=255)
-        self.blue  = midicontrol.MidiControl(self, "blue", 82, value=127, min=0, max=255)
+        self.red   = MidiControl(self, "red", 80, value=127, min=0, max=255)
+        self.green = MidiControl(self, "green", 81, value=127, min=0, max=255)
+        self.blue  = MidiControl(self, "blue", 82, value=127, min=0, max=255)
 
 
     def process(self):
