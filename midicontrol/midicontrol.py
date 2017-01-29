@@ -11,7 +11,33 @@ def set_logging(logging):
 
 
 class MidiControl(object):
+    """
+    A variable that will receive midi control changes.
+
+    Attributes:
+        value:  The current value of the control.
+    """
+
     def __init__(self, midi_manager, name, control_number, value=0, min=0, max=255, allowed_values=None):
+    """
+    Instantiate a midi control object that will receive midi control changes.
+
+    Parameters
+    ----------
+    midi_manager : MidiControlManager
+        The parent MidiControlManager this control will be registered to.
+    name : str
+        Name of this control.
+    control_number: int
+        The midi control number (CC).
+    value:  int or float
+        The initial value of this control.
+    min, max: int or float
+        The value range of this control.
+    allowed_values: array
+        A collection of discrete values this control should hold.
+
+    """
         self.midi_manager = midi_manager
         self.min = 0
         self.max = 255
@@ -39,15 +65,25 @@ class MidiControl(object):
 
 
 class MidiControlManager(object):
+    """
+        The control manager receives control changes and dispatches them to all registered MidiControls.
+    """
+
     def __init__(self):
         self.inport = mido.open_input()
         self.controls = {}
 
+
     def register_control(self, control):
+    """
+        Register a MidiControl. Called during contstruction of MidiControl.
+    """
         self.controls[control.control_number] = control
 
 
     def poll(self):
+        """ Poll for new midi messages. Call this method your event loop. """
+
         for msg in self.inport.iter_pending():
             if msg.type=='control_change':
                 control_number = msg.control
