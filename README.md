@@ -42,5 +42,4 @@ while True:
     # Display the image:
     cv2.imshow("RGB Fun!", img)
     cv2.waitKey(10)
-        
-        ```
+    
