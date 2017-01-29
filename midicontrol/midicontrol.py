@@ -1,6 +1,13 @@
 import mido
 mido.set_backend('mido.backends.rtmidi')
 import time
+import sys
+
+Logging = False
+
+def set_logging(logging):
+    global Logging
+    Logging = logging
 
 
 class MidiControl(object):
@@ -26,7 +33,8 @@ class MidiControl(object):
         else:
             self.value = new_value
 
-        print("Setting %s to %f (%d)" % (self.name, self.value, self.control_number))
+        if Logging:
+            sys.stderr.write("Setting %s to %f (CC=%d)\n" % (self.name, self.value, self.control_number))
 
 
 
@@ -47,5 +55,5 @@ class MidiControlManager(object):
 
                 if control_number in self.controls:
                     self.controls[control_number].set_value(value)
-                else:
-                    print("Control_change: %d %d" % (control_number,value))
+                elif Logging:
+                    sys.stderr.write("Control_change: CC=%d Value=%d\n" % (control_number,value))
