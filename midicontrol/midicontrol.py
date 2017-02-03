@@ -38,8 +38,8 @@ class MidiControl(object):
             A collection of discrete values this control should hold.
         """
         self.midi_manager = midi_manager
-        self.min = 0
-        self.max = 255
+        self.min = min
+        self.max = max
         self.control_number = control_number
         self.value = value
         self.name = name
